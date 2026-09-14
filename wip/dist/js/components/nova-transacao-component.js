@@ -1,7 +1,4 @@
 "use strict";
-let saldo = 3000;
-const elementoSaldo = document.querySelector(".saldo-valor .valor");
-elementoSaldo.textContent = saldo.toFixed(2);
 const elementoFormulario = document.querySelector(".block-nova-transacao form");
 elementoFormulario.addEventListener("submit", function (event) {
     event.preventDefault();
@@ -12,9 +9,11 @@ elementoFormulario.addEventListener("submit", function (event) {
     const inputTipoTransacao = elementoFormulario.querySelector("#tipoTransacao");
     const inputValor = elementoFormulario.querySelector("#valor");
     const inputData = elementoFormulario.querySelector("#data");
+    const elementoSaldo = document.querySelector(".saldo-valor .valor");
     let tipoTransacao = inputTipoTransacao.value;
     let valor = inputValor.valueAsNumber;
     let data = inputData.valueAsDate;
+    let saldo = 3000;
     if (tipoTransacao === "Depósito") {
         saldo += valor;
     }
