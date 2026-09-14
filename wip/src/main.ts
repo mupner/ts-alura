@@ -37,6 +37,10 @@ elementoSaldo.textContent = saldo.toFixed(2)
     valor: valor,
     data: data
   }
-
+ 
   elementoFormulario.reset()
+
+  
+
+ 
 })
