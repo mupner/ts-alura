@@ -13,15 +13,19 @@ elementoFormulario.addEventListener("submit", function(event) {
   const inputData = elementoFormulario.querySelector("#data") as HTMLInputElement
   const elementoSaldo = document.querySelector(".saldo-valor .valor") as HTMLElement
 
-let tipoTransacao = inputTipoTransacao.value
+let tipoTransacao: TipoTransacao = inputTipoTransacao.value as TipoTransacao
 let valor = inputValor.valueAsNumber
-let data = inputData.valueAsDate
 let saldo: number = 3000
+let data = inputData.valueAsDate
+if (!data) {
+  alert("Por favor, insira uma data válida")
+  return
+}
 
 
-if (tipoTransacao === "Depósito") { 
+if (tipoTransacao === TipoTransacao.DEPOSITO) { 
   saldo += valor
-} else if (tipoTransacao === "Transferência" || tipoTransacao === "Pagamento de Boleto") {
+} else if (tipoTransacao === TipoTransacao.TRANSFERENCIA || tipoTransacao === TipoTransacao.PAGAMENTO_BOLETO) {
     saldo -= valor;
   } else {
     alert("Pagamento inválido!")
@@ -30,7 +34,7 @@ if (tipoTransacao === "Depósito") {
 
 elementoSaldo.textContent = saldo.toFixed(2)
   
-  const novaTransacao = {
+  const novaTransacao: Transacao = {
     tipoTransacao: tipoTransacao,
     valor: valor,
     data: data
