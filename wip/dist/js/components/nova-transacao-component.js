@@ -13,7 +13,7 @@ elementoFormulario.addEventListener("submit", function (event) {
     let tipoTransacao = inputTipoTransacao.value;
     let valor = inputValor.valueAsNumber;
     let saldo = 3000;
-    let data = inputData.valueAsDate;
+    let data = new Date(inputData.value);
     if (!data) {
         alert("Por favor, insira uma data válida");
         return;
