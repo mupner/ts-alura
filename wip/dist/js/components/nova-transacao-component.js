@@ -1,5 +1,6 @@
 "use strict";
 const elementoFormulario = document.querySelector(".block-nova-transacao form");
+// let saldo: number = 3000
 elementoFormulario.addEventListener("submit", function (event) {
     event.preventDefault();
     if (!elementoFormulario.checkValidity()) {
@@ -12,10 +13,9 @@ elementoFormulario.addEventListener("submit", function (event) {
     const elementoSaldo = document.querySelector(".saldo-valor .valor");
     let tipoTransacao = inputTipoTransacao.value;
     let valor = inputValor.valueAsNumber;
-    let saldo = 3000;
-    let data = new Date(inputData.value);
-    if (!data) {
-        alert("Por favor, insira uma data válida");
+    let data = inputData.valueAsDate;
+    if (data === null) {
+        alert("Informe uma data para a transação");
         return;
     }
     if (tipoTransacao === TipoTransacao.DEPOSITO) {
@@ -28,7 +28,7 @@ elementoFormulario.addEventListener("submit", function (event) {
         alert("Pagamento inválido!");
         return;
     }
-    elementoSaldo.textContent = saldo.toFixed(2);
+    elementoSaldo.textContent = saldo.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
     const novaTransacao = {
         tipoTransacao: tipoTransacao,
         valor: valor,

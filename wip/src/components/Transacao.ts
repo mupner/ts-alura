@@ -1,5 +1,6 @@
 type Transacao = {
-tipoTransacao: TipoTransacao,
-valor: number,
-data: Date
-}
+    tipoTransacao: TipoTransacao,
+    valor: number,
+    data: Date
+  }
+ 

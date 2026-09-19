@@ -1,4 +1,5 @@
 const elementoFormulario = document.querySelector(".block-nova-transacao form") as HTMLFormElement
+// let saldo: number = 3000
 
 elementoFormulario.addEventListener("submit", function(event) {
   event.preventDefault()
@@ -15,12 +16,11 @@ elementoFormulario.addEventListener("submit", function(event) {
 
 let tipoTransacao: TipoTransacao = inputTipoTransacao.value as TipoTransacao
 let valor = inputValor.valueAsNumber
-let saldo: number = 3000
-let data: Date = new Date(inputData.value)
-if (!data) {
-  alert("Por favor, insira uma data válida")
+let data = inputData.valueAsDate
+if (data === null) {
+  alert("Informe uma data para a transação")
   return
-}
+}  
 
 
 if (tipoTransacao === TipoTransacao.DEPOSITO) { 
@@ -32,7 +32,7 @@ if (tipoTransacao === TipoTransacao.DEPOSITO) {
     return
   } 
 
-elementoSaldo.textContent = saldo.toFixed(2)
+elementoSaldo.textContent = saldo.toLocaleString("pt-BR", { style: "currency", currency: "BRL"})
   
   const novaTransacao: Transacao = {
     tipoTransacao: tipoTransacao,
